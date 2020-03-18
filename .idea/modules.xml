@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/ASD-Morning-4-own.iml" filepath="$PROJECT_DIR$/ASD-Morning-4-own.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/ASD-Morning-4.iml" filepath="$PROJECT_DIR$/ASD-Morning-4.iml" />
+>>>>>>> 7608cf005da2857040b63562d9a34af6f713f483
     </modules>
   </component>
 </project>
