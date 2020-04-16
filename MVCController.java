@@ -129,16 +129,67 @@ public class MVCController {
     }
 
     //Testing Mode
-    @GetMapping("/user/test")
-    public String userTest(Model model) {
+        @GetMapping("/user/test")
+        public String userTest(Model model) {
+            return "user/testingmode";
+        }
+
+        @GetMapping("/user/testinggerman")
+        public String userTestingGerman(Model model) {
+            // tell the thymeleaf which user is logged in
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            model.addAttribute("current_user", userDetails.getUsername());
+
+            // get the Query to show current vocabulary entries of user x
+            model.addAttribute("overview", this.vocabularyRepository.showAllVocabularyFromUserX(userDetails.getUsername()));
+
+            return "user/testingmode_e_to_g";
+        }
+
+        @GetMapping("/user/testingenglish")
+        public String userTestingEnglish(Model model) {
+            // tell the thymeleaf which user is logged in
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            model.addAttribute("current_user", userDetails.getUsername());
+
+            // get the Query to show current vocabulary entries of user x
+            model.addAttribute("overview", this.vocabularyRepository.showAllVocabularyFromUserX(userDetails.getUsername()));
+
+            return "user/testingmode_g_to_e";
+        }
+
+        @GetMapping("/user/g_result")
+        public String userTestResultGerman(Model model) {
+
+            // tell the thymeleaf which user is logged in
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            model.addAttribute("current_user", userDetails.getUsername());
+
+            // get the Query to show current vocabulary entries of user x
+            model.addAttribute("overview", this.vocabularyRepository.showAllVocabularyFromUserX(userDetails.getUsername()));
+
+            return "user/testingmode_result_german";
+        }
+
+    @GetMapping("/user/e_result")
+    public String userTestResultEnglish(Model model) {
 
         // tell the thymeleaf which user is logged in
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+        model.addAttribute("current_user", userDetails.getUsername());
 
+        // get the Query to show current vocabulary entries of user x
+        model.addAttribute("overview", this.vocabularyRepository.showAllVocabularyFromUserX(userDetails.getUsername()));
 
-        return "user/testingmode";
+        return "user/testingmode_result_english";
     }
 
     /* Login Page */
